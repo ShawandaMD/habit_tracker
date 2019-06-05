@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :require_login
+  helper_method :current_user, :require_login, :logged_in?
 
   def current_user
     User.find_by(id: session[:user_id])
@@ -7,5 +7,9 @@ class ApplicationController < ActionController::Base
 
   def require_login
     return head(:forbidden) unless session.include? :user_id
+  end
+
+  def logged_in?
+    session[:user_id]
   end
 end
