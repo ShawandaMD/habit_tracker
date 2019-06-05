@@ -7,12 +7,12 @@ class SessionsController < ApplicationController
     if logged_in?
       redirect_to users_path(current_user)
     else
-      render '/login'
+      render 'login'
     end
   end
 
   def create
-    @user =  User.find_by(username: params[:user][:username])
+    @user =  User.find_by(email: params[:user][:email])
     return head(:forbidden) unless @user.try(:authenticate, params[:user][:password])
     session[:user_id] = @user.id
   end
