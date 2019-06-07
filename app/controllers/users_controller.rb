@@ -9,5 +9,6 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     session[:user_id] = @user.id
     redirect_to user_path(current_user)
+    end
   end
 end
