@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
 
   #log in
   def new
+    @user = User.new
     if logged_in?
       redirect_to users_path(current_user)
     else
