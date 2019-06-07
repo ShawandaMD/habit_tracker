@@ -1,2 +1,2 @@
-class Habit < ApplicationRecord
+class Habit < ActiveRecord::Base
 end
