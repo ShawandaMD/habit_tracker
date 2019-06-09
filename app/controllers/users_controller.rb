@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:show]
   def new
     @user = User.new
   end
@@ -11,6 +12,10 @@ class UsersController < ApplicationController
     session[:user_id] = @user.id
     redirect_to user_path(current_user)
     end
+  end
+
+  def show
+
   end
 
   private
