@@ -19,6 +19,11 @@ class SessionsController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def destroy
+    session.delete :user_id
+    redirect_to 'welcome'
+  end
+
   private
   #def user_params
   #  params.require(:user).permit(:name, :email, :password, :password_confirmation)
