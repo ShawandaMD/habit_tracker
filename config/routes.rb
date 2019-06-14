@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  resources :activities
-  resources :habits
-  resources :users, only: [:new, :create, :show]
+
+  resources :habits, only: [:index, :show] do
+    resources :activities
+  end
+
+  resources :users, only: [:new, :create, :show] do
+    resources :habits
+  end
 
   root 'sessions#welcome'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  post '/logout', to: 'sessions#destroy'
+  delete '/logout', to: 'sessions#destroy'
 
 end
