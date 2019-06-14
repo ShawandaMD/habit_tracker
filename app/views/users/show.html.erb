@@ -1,5 +1,9 @@
-<%=@user.name%>
+<h1><%=@user.name%></h1>
 
-<%= month_calendar do |date| %>
-  <%= date %>
+
+
+<div class="logout">
+<%= form_tag ({controller: 'sessions', action: 'destroy', method: 'delete'}) do %>
+  <input type=submit value='logout'>
 <% end %>
+</div>
