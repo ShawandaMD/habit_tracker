@@ -9,10 +9,12 @@ class ApplicationController < ActionController::Base
     if !logged_in?
         flash[:notice] = "You must be logged in."
         redirect_to :root
-    end    
+    end
   end
 
   def logged_in?
-    session[:user_id]
+    if session[:user_id]
+      flash[:notice] = "Welcome back! You are already logged in."
+    end
   end
 end
