@@ -1,11 +1,17 @@
 class SessionsController < ApplicationController
+  before_action :logged_in?
+
   def welcome
   end
 
   #log in
   def new
     @user = User.new
-    render 'login'
+    if logged_in?
+      redirect_to user_path(current_user.id)
+    else
+      render 'login'
+    end
   end
 
   def create
