@@ -5,28 +5,28 @@ class SessionsController < ApplicationController
   #log in
   def new
     @user = User.new
-    if logged_in?
-      redirect_to users_path(current_user)
+    render 'login'
+  end
+
+  def create
+    @user = User.find_by(email: params[:user][:email])
+    if @user && @user.try(:authenticate, params[:user][:password])
+       session[:user_id] = @user.id
+       redirect_to user_path(@user.id)
     else
+      @user ||=
       render 'login'
     end
   end
 
-  def create
-    @user =  User.find_by(email: params[:user][:email])
-    return head(:forbidden) unless @user.try(:authenticate, params[:user][:password])
-    session[:user_id] = @user.id
-    redirect_to user_path(@user)
-  end
-
   def destroy
     session.delete :user_id
-    redirect_to 'welcome'
+    redirect_to :root
   end
 
   private
   #def user_params
-  #  params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  #  params.require(:user).permit(:name, :email, :password)
   #end
 
 end
