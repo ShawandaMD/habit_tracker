@@ -6,7 +6,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    return head(:forbidden) unless session.include? :user_id
+    if !logged_in?
+        flash[:notice] = "You must be logged in."
+        redirect_to :root
+    end    
   end
 
   def logged_in?
