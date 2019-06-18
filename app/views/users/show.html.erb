@@ -1,5 +1,7 @@
 <h1>Welcome <%=@user.name%>!</h1>
-<h3>You're activitely pursuing (#) habits.</h3>
+<h3>You're activitely pursuing () habits.</h3>
+
+<h2><%= link_to "Create A New Habit", new_user_habit_url(current_user) %></h2>
 
 <h3>Habits:</h3>
 
