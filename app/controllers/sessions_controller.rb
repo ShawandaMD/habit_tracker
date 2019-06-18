@@ -19,8 +19,11 @@ class SessionsController < ApplicationController
     if @user && @user.try(:authenticate, params[:user][:password])
        session[:user_id] = @user.id
        redirect_to user_path(@user.id)
+    elsif
+      !@user
+      redirect_to :root
+      flash[:notice] = "Email does not exist. Please sign up."
     else
-      @user ||=
       render 'login'
     end
   end
