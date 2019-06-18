@@ -1,9 +1,16 @@
-<h1><%=@user.name%></h1>
+<h1>Welcome <%=@user.name%>!</h1>
+<h3>You're activitely pursuing (#) habits.</h3>
 
+<h3>Habits:</h3>
 
+<ol>
+<%user_habits.each do |habit|%>
+  <li><%=habit.name %></li>
+<%end%>
+</ol>
 
 <div class="logout">
-<%= form_tag ({controller: 'sessions', action: 'destroy', method: 'delete'}) do %>
+<%= form_tag ({controller: 'sessions', action: 'destroy'}) do %>
   <input type=submit value='logout'>
 <% end %>
 </div>
