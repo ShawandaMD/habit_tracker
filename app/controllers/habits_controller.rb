@@ -19,5 +19,9 @@ class HabitsController < ApplicationController
 
   end
 
-  
+  private
+    def habit_params
+      params.require(:habit).permit(:name, :category, :goal, :user_id)
+    end
+
 end
