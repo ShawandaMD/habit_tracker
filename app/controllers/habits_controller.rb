@@ -8,7 +8,13 @@ class HabitsController < ApplicationController
   end
 
   def create
+    @habit = Habit.new(habit_params)
 
+    if @habit.save
+      redirect_to user_habit_path(@habit)
+    else
+      render :new
+    end
   end
 
   def update
