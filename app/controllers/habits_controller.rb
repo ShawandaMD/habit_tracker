@@ -1,6 +1,10 @@
 class HabitsController < ApplicationController
-  def show
+  def index
+    @habits = Habit.all
+  end
 
+  def show
+    @habit = Habit.find(params[:id])
   end
 
   def new
@@ -9,8 +13,8 @@ class HabitsController < ApplicationController
 
   def create
     @habit = Habit.new(habit_params)
-
-    if @habit.save
+    if @habit.valid?
+      @habit.save
       redirect_to user_habit_path(@habit)
     else
       render :new
