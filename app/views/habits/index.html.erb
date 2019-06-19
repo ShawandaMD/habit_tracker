@@ -1,0 +1,7 @@
+<h1>Habits:</h1>
+
+<ol>
+<%user_habits.each do |habit|%>
+  <li><%= link_to habit.name, habit_path(habit) %></li>
+<%end%>
+</ol>
