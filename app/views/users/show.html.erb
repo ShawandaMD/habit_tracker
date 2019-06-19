@@ -1,15 +1,11 @@
 <h1>Welcome <%=@user.name%>!</h1>
-<h3>You're activitely pursuing () habits.</h3>
+<h3>You're activitely pursuing <%=user_habits.count%> habits.</h3>
 
-<h2><%= link_to "Create A New Habit", new_user_habit_url(current_user) %></h2>
 
-<h3>Habits:</h3>
+<h2><%= link_to "My Habits", user_habits_path(current_user) %></h2>
+<h2><%= link_to "Create A New Habit", new_user_habit_path(current_user) %></h2>
 
-<ol>
-<%user_habits.each do |habit|%>
-  <li><%=habit.name %></li>
-<%end%>
-</ol>
+
 
 <div class="logout">
 <%= form_tag ({controller: 'sessions', action: 'destroy'}) do %>
