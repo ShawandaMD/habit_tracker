@@ -1,1 +1,8 @@
 <h2><%=@habit.name%></h2>
+<h3>Category: </h3><%=@habit.category%>
+<h3>Goal: </h3><%=@habit.goal%>
+<br>
+
+<div class="links">
+  <h2><%= link_to "Add Activity", new_habit_activity_path(@habit)  %></h2>
+</div>
