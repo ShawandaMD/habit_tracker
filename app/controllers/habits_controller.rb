@@ -1,4 +1,6 @@
 class HabitsController < ApplicationController
+  before_action :logged_in?
+
   def index
     @habits = Habit.all
   end
@@ -8,14 +10,14 @@ class HabitsController < ApplicationController
   end
 
   def new
-    @habit = Habit.new
+    @habit = Habit.new(user_id: current_user.id)#knows to go to nested route
+
   end
 
   def create
-    @habit = Habit.new(habit_params)
-    if @habit.valid?
-      @habit.save
-      redirect_to user_habit_path(@habit)
+    @habit = current_user.habits.build(habit_params)
+    if @habit.save
+      redirect_to user_habit_path(@habit.id)
     else
       render :new
     end
@@ -31,7 +33,7 @@ class HabitsController < ApplicationController
 
   private
     def habit_params
-      params.require(:habit).permit(:name, :category, :goal, :user_id)
+      params.require(:habit).permit(:name, :category, :goal)
     end
 
 end
