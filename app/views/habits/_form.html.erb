@@ -1,0 +1,40 @@
+<%= form_for habit do |f| %>
+  <% if @habit.errors.any? %>
+    <div id="error_explanation">
+      <h3>There were some errors:</h3>
+      <ul>
+        <% @habit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @habit.errors[:name].empty? %>
+  <div class="field">
+    <% else %>
+  <div class="field_with_errors">
+    <% end %>
+    Name: <%= f.text_field :name %>
+  </div>
+
+  <% if @habit.errors[:category].empty? %>
+  <div class="field">
+    <% else %>
+  <div class="field_with_errors">
+    <% end %>
+    Category: <%= f.text_field :category %>
+  </div>
+
+  <% if @habit.errors[:goal].empty? %>
+  <div class="field">
+    <% else %>
+  <div class="field_with_errors">
+    <% end %>
+    Goal: <%= f.text_field :goal %>
+  </div>
+
+
+
+  <%= f.submit %>
+<% end %>
