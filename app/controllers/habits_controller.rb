@@ -29,6 +29,7 @@ class HabitsController < ApplicationController
 
   def update
     @habit = Habit.find(params[:id])
+    @habit.update(habit_params)
     if @habit.save
       redirect_to user_habit_path(@habit.id)
     else
