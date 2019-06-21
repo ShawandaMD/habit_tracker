@@ -23,8 +23,17 @@ class HabitsController < ApplicationController
     end
   end
 
-  def update
+  def edit
+    @habit = Habit.find(params[:id])
+  end
 
+  def update
+    @habit = Habit.find(params[:id])
+    if @habit.save
+      redirect_to user_habit_path(@habit.id)
+    else
+      render :edit
+    end
   end
 
   def delete
