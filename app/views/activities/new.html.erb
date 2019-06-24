@@ -1,4 +1,4 @@
-<%= form_for @activity  do |f| %>
-Name: <%= f.text_field :name %>
+<%= form_for [@activity.habit, @activity] do |f| %>
+Action: <%= f.text_field :action %>
 <%= f.submit %>
 <%end%>
