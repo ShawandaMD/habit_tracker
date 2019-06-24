@@ -1,4 +1,4 @@
 <%= form_for [@activity.habit, @activity] do |f| %>
-Action: <%= f.text_field :action %>
+Action: <%= f.select :action, action_list.each { |action| action}, include_blank: true %>
 <%= f.submit %>
 <%end%>
