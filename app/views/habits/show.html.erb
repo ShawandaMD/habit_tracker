@@ -6,4 +6,6 @@
 <div class="links">
   <h2><%= link_to "Add Activity", new_habit_activity_path(@habit)  %></h2>
   <h2><%= link_to "Edit Habit", edit_user_habit_path(@habit)  %></h2>
+  <h2><%= link_to "Delete Habit", user_habit_path(@habit) , method: :delete, data: { confirm: 'Are you sure?' } %></h2>
+
 </div>

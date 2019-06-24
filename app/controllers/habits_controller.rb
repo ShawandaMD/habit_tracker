@@ -17,7 +17,7 @@ class HabitsController < ApplicationController
   def create
     @habit = current_user.habits.build(habit_params)
     if @habit.save
-      redirect_to user_habit_path(@habit.id)
+      redirect_to user_habits_path
     else
       render :new
     end
@@ -37,8 +37,11 @@ class HabitsController < ApplicationController
     end
   end
 
-  def delete
-
+  def destroy
+    @habit = Habit.find(params[:id])
+    @habit.destroy
+    flash[:notice] = "Habit Deleted!"
+    redirect_to user_habits_path(current_user.id)
   end
 
   private
