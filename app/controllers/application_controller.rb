@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
+  def current_habit
+    @current_habit ||= Habit.find_by(id: params[:habit_id])
+  end
+
   def require_login
     if !logged_in?
         flash[:notice] = "You must be logged in."
