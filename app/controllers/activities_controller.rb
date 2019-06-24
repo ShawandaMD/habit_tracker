@@ -4,11 +4,11 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-
+    @activity = Activity.new(habit_id: current_habit.id)
   end
 
   def create
-
+    @activity = Activity.new
   end
 
   def edit
