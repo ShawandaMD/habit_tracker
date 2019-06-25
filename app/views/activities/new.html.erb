@@ -1,4 +1,10 @@
 <%= form_for [@activity.habit, @activity] do |f| %>
+<div class="form">
+
+Date: <%= f.fields_for :event do |dates| %>
+   <%= dates.date_field :occurance %>
+ <% end %>
 Action: <%= f.select :action, action_list.each { |action| action}, include_blank: true %>
+</div>
 <%= f.submit %>
 <%end%>
