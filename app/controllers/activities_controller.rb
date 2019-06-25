@@ -5,10 +5,16 @@ class ActivitiesController < ApplicationController
 
   def new
     @activity = Activity.new(habit_id: current_habit.id)
+    @activity.build_event
   end
 
   def create
-    @activity = Activity.new
+    @activity = current_habit.activities.build(activity_params)
+    if @activity.save
+      redirect_to habit_activities_path
+    else
+      render :new  #add error_explanation to form
+    end
   end
 
   def edit
@@ -22,4 +28,9 @@ class ActivitiesController < ApplicationController
   def delete
 
   end
+
+  private
+    def activity_params
+      params.require(:activity).permit(:action, :event_id, event_attributes: [:occurance])
+    end
 end
