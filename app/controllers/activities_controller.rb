@@ -2,6 +2,11 @@ class ActivitiesController < ApplicationController
   before_action :logged_in?
   def index
     @activities = Activity.all
+    #@activity = Activity.find(params[:id])
+  end
+
+  def show
+    @activity = Activity.find(params[:id])
   end
 
   def new
@@ -19,11 +24,17 @@ class ActivitiesController < ApplicationController
   end
 
   def edit
-
+    @activity = Activity.find(params[:id])
   end
 
   def update
-
+    @activity = Activity.find(params[:id])
+    @activity.update(activity_params)
+    if @activity.save
+      redirect_to habit_activities_path
+    else
+      render :edit
+    end
   end
 
   def delete
