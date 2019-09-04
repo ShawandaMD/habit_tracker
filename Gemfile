@@ -29,6 +29,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "simple_calendar", "~> 2.0"
 
+gem 'active_model_serializers'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
