@@ -3,10 +3,18 @@ class HabitsController < ApplicationController
 
   def index
     @habits = Habit.all
+    respond_to do |f|
+      f.html {render :index}
+			f.json {render json: @habits}
+    end
   end
 
   def show
     @habit = Habit.find(params[:id])
+    respond_to do |f|
+      f.html {render :show}
+			f.json {render json: @habit}
+    end
   end
 
   def new
@@ -17,7 +25,10 @@ class HabitsController < ApplicationController
   def create
     @habit = current_user.habits.build(habit_params)
     if @habit.save
-      redirect_to user_habits_path
+      respond_to do |f|
+        f.html {redirect_to user_habits_path}
+  			f.json {render json: @habit}
+      end
     else
       render :new
     end
