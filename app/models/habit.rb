@@ -11,6 +11,12 @@ class Habit < ActiveRecord::Base
   def completed_activity_name
     self.activities.where("action = ?","Completed").map do |act|
       act.action
-    end  
+    end
   end
+
+  def self.user_habits(current_user)
+  self.where("user_id = ?", current_user.id)
+  end
+
+
 end
