@@ -5,16 +5,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
 
   <body>
+
     <ul>
       <li><%=link_to "Homepage", user_path(current_user)%></li>
       <li><%=link_to "My Habits", user_habits_path(current_user)%></li>
-      <li></li>
+      <li><%=link_to "Logout", {controller: 'sessions', action: 'destroy'}, :method => :delete%></li>
     </ul>
+
 
     <%= yield %>
   </body>
