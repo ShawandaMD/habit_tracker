@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <ul>
+      <li><%=link_to "Homepage", user_path(current_user)%></li>
+      <li><%=link_to "My Habits", user_habits_path(current_user)%></li>
+      <li></li>
+    </ul>
+
     <%= yield %>
   </body>
 </html>
