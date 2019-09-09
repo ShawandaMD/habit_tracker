@@ -2,7 +2,7 @@ class HabitsController < ApplicationController
   before_action :logged_in?
 
   def index
-    @habits = Habit.all
+    @habits = Habit.user_habits(current_user)
     respond_to do |f|
       f.html {render :index}
 			f.json {render json: @habits}
