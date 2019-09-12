@@ -9,10 +9,14 @@ $(document).ready (function() {
 
 function getHabits(id) {
   fetch(`/users/${id}/habits.json`)
-  .then((response) => response.json()
-  )
-  .then((habitsArray) => {
-    debugger
-    console.log(habitsArray);
-  });
+  .then((response) => response.json())
+  .then((habitsArray) => console.log(habitsArray));
 }
+
+class Habit {
+	constructor(obj) {
+		this.id = obj.id
+		this.name = obj.name
+		this.category = obj.category
+		this.goal = obj.goal
+	}
