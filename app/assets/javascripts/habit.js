@@ -15,3 +15,12 @@ function getHabits(id) {
   })
 
 }
+
+class Habit {
+  constructor(obj) {
+    this.id = obj.id
+    this.name = obj.name
+    this.category = obj.category
+    this.goal = obj.goal
+  }
+}
