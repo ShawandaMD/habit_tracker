@@ -16,6 +16,13 @@ function getHabits(id) {
 
 }
 
+function listOfHabits(habitsArray) {
+  const habits = habitsArray.map(habit => {
+   const obj = new Habit(habit)
+   const html = obj.habitsHTML()
+  })
+};
+
 class Habit {
   constructor(obj) {
     this.id = obj.id
