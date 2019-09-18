@@ -5,6 +5,11 @@ $(document).on('turbolinks:load', function() {
     //debugger
     getHabits(event.target.dataset.userId) //user specific habits
   })
+  $('form').submit(function (event) {
+  //alert( "Handler for .submit() called." );
+  event.preventDefault();
+  habitsForm(event.target)
+  });
 })
 
 function getHabits(id) {
