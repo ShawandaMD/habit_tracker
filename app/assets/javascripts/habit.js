@@ -12,6 +12,17 @@ $(document).on('turbolinks:load', function() {
   });
 })
 
+
+function habitsForm(form) {
+  //debugger
+  fetch(`${form.action}`, {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify($(form).serializeArray()), // data can be `string` or {object}!
+  }).then(res => res.json())
+  .then(habitObject => console.log(habitObject))
+  .catch(error => console.error('Error:', error));
+}
+
 function getHabits(id) {
   fetch(`/users/${id}/habits.json`)
   .then((response) => response.json())
