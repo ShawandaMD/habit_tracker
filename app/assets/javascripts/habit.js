@@ -20,6 +20,7 @@ function listOfHabits(habitsArray) {
   const habits = habitsArray.map(habit => {
    const obj = new Habit(habit)
    const html = obj.habitsHTML()
+   //debugger
    $('div#habits-list').append(html)
   })
 };
@@ -31,4 +32,10 @@ class Habit {
     this.category = obj.category
     this.goal = obj.goal
   }
+  habitsHTML() {
+    return (`<li>
+      <a href="http://localhost:3000/habits/${this.id}">${this.name}</a>
+    </li>`)
+  }
+
 }
