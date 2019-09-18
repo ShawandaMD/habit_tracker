@@ -20,6 +20,7 @@ function listOfHabits(habitsArray) {
   const habits = habitsArray.map(habit => {
    const obj = new Habit(habit)
    const html = obj.habitsHTML()
+   $('div#habits-list').append(html)
   })
 };
 
