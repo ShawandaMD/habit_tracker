@@ -10,17 +10,29 @@ $(document).on('turbolinks:load', function() {
   event.preventDefault();
   habitsForm(event.target)
   });
+
+  $('a#each-habit-data').on('click', function(event) {
+    //debugger
+    event.preventDefault()
+    getShowPage(event.target.dataset.habitId) //user specific habits
+  })
 })
 
 
 function habitsForm(form) {
-  //debugger
-  fetch(`${form.action}`, {
-    method: 'POST', // or 'PUT'
-    body: JSON.stringify($(form).serializeArray()), // data can be `string` or {object}!
-  }).then(res => res.json())
-  .then(habitObject => console.log(habitObject))
-  .catch(error => console.error('Error:', error));
+  const formData = $(form).serialize()//pulls data and takes the array of data from form
+  const id = form.action.split('/')[4]
+
+  jQuery.post(`/users/${id}/habits.json`, formData, function(response) {
+  console.log(response), "JSON";
+})
+      //debugger
+//  fetch(`/users/${id}/habits.json`, {
+  //  method: 'POST', // or 'PUT'
+    //body: formData // data can be `string` or {object}!
+//  }).then(res => res.json())
+  //.then(habitObject => console.log(habitObject))//Why isnt this posting to the console???
+  //.catch(error => console.error('Error:', error));
 }
 
 function getHabits(id) {
@@ -29,7 +41,6 @@ function getHabits(id) {
   .then((habitsArray) => {
     listOfHabits(habitsArray)
   })
-
 }
 
 function listOfHabits(habitsArray) {
@@ -40,6 +51,17 @@ function listOfHabits(habitsArray) {
    $('div#habits-list').append(html)
   })
 };
+
+function getShowPage(id) {
+  //debugger
+  fetch(`/habits/${id}.json`)
+  .then((response) => response.json())
+  .then((data) => {
+    obj = new Habit(data)
+    //debugger
+    obj.habitsData()
+  })
+}
 
 class Habit {
   constructor(obj) {
@@ -53,5 +75,10 @@ class Habit {
       <a href="http://localhost:3000/habits/${this.id}">${this.name}</a>
     </li>`)
   }
+   habitsData() {
+     //debugger
+       $(`#habit-data-${this.id}`).append(`Category: ${this.category}
+         Goal: ${this.goal}`)
+   }
 
 }
