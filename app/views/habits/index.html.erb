@@ -2,6 +2,13 @@
 
 <ol>
 <%@habits.each do |habit|%>
-  <li><%= link_to habit.name, habit_path(habit) %></li>
+  <li><%= link_to habit.name, "#", {id: "each-habit-data", data: {habit_id: habit.id}} %>
+
+    <div id="habit-data-<%=habit.id%>">
+  
+    </div>
+
+  </li>
+
 <%end%>
 </ol>
