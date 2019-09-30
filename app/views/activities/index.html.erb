@@ -3,6 +3,9 @@
 <%@activities.each do |activity|%>
   <li>
     <%=activity.event.occurance.strftime("%b %d, %Y")%> -- <%=activity.action %>
+    <br>
+    Comments:  <%=activity.event.comment%><br>
+    <br>
   </li>
 <%end%>
 </ul>
