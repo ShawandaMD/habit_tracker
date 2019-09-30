@@ -1,6 +1,4 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :occurance
+  attributes :id, :occurance, :comment
   has_many :activities
 end
-
-###DELETE THIS FILE NOT NEEDED!
