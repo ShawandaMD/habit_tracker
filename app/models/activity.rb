@@ -5,4 +5,7 @@ class Activity < ActiveRecord::Base
 
   ACTION = ["No attempt", "50% completed", "Completed"]
 
+  def self.habit_activities(current_habit)
+  self.where("habit_id = ?", current_habit.id)
+  end
 end

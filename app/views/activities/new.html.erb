@@ -2,7 +2,7 @@
 
 <%= form_for [@activity.habit, @activity] do |f| %>
 <div class="form">
-
+<h2><%= @activity.habit.name %></h2><br>
 Date: <%= f.fields_for :event do |dates| %>
    <%= dates.date_field :occurance %>
  <% end %>
