@@ -113,7 +113,7 @@ class Event{
     debugger
     this.occurance = obj.event.occurance
     this.comment = obj.event.comment
-    this
+    this.habitId = obj.habit.id
 
   }
 }
