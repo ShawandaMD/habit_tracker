@@ -3,6 +3,14 @@
 <h3>Goal: </h3><%=@habit.goal%>
 <br>
 
+<br>
+<%= link_to "View Activities", "#", {id: "activities-data", data: {habit_id: @habit.id}} %>
+<br>
+
+<div class="list-activities">
+
+</div>
+
 <div class="links">
   <h2><%= link_to "View Activity", habit_activities_path(@habit)  %></h2>
   <h2><%= link_to "Add Activity", new_habit_activity_path(@habit)  %></h2>
