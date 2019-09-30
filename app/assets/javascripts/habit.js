@@ -70,7 +70,6 @@ function getActivitiesPage(id) {
   fetch(`/habits/${id}/activities.json`)
   .then((response) => response.json())
   .then((dataArray) => {
-//debugger
     listOfEvents(dataArray)
     //console.log(dataArray)
   })
@@ -78,11 +77,10 @@ function getActivitiesPage(id) {
 
 function listOfEvents(dataArray) {
   const events = dataArray.map(event => {
-    debugger
-   const obj = new Event(event)
-   const html = obj.eventsHTML()
-   //debugger
-   $('div#habits-list').append(html)
+    //debugger
+   const eventObj = new Event(event)
+   const eventHtml = eventObj.eventsHTML()
+   $('div#list-activities').append(eventHtml)
   })
 }
 
@@ -110,10 +108,14 @@ class Habit {
 class Event{
   constructor(obj) {
     this.id = obj.id
-    debugger
     this.occurance = obj.event.occurance
     this.comment = obj.event.comment
     this.habitId = obj.habit.id
-
+  }
+  eventsHTML() {
+    return (`<li>
+      Date: ${this.occurance} <br>
+      Comment: ${this.comment}
+    </li><br>`)
   }
 }
