@@ -67,17 +67,24 @@ function getShowPage(id) {
 
 function getActivitiesPage(id) {
   //debugger
-  fetch(`/habits/13/activities.json`)
+  fetch(`/habits/${id}/activities.json`)
   .then((response) => response.json())
   .then((dataArray) => {
-debugger
-    console.log(data)
-    //obj = new Habit(data)
-    //debugger
-    //obj.habitsData()
+//debugger
+    listOfEvents(dataArray)
+    //console.log(dataArray)
   })
 }
 
+function listOfEvents(dataArray) {
+  const events = dataArray.map(event => {
+    debugger
+   const obj = new Event(event)
+   const html = obj.eventsHTML()
+   //debugger
+   $('div#habits-list').append(html)
+  })
+}
 
 
 class Habit {
@@ -103,8 +110,10 @@ class Habit {
 class Event{
   constructor(obj) {
     this.id = obj.id
-    this.occurance = obj.occurance
-    this.comment = obj.comment
+    debugger
+    this.occurance = obj.event.occurance
+    this.comment = obj.event.comment
+    this
 
   }
 }
