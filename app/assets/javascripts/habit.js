@@ -16,8 +16,12 @@ $(document).on('turbolinks:load', function() {
     event.preventDefault()
     getShowPage(event.target.dataset.habitId) //user specific habits
   })
-})
 
+  $('#activities-data').on('click', function(event) {
+    event.preventDefault()
+    getActivitiesPage(event.target.dataset.habitId)
+  })
+})
 
 function habitsForm(form) {
   const formData = $(form).serialize()//pulls data and takes the array of data from form
@@ -53,15 +57,27 @@ function listOfHabits(habitsArray) {
 };
 
 function getShowPage(id) {
-  //debugger
   fetch(`/habits/${id}.json`)
   .then((response) => response.json())
   .then((data) => {
     obj = new Habit(data)
-    //debugger
     obj.habitsData()
   })
 }
+
+function getActivitiesPage(id) {
+  //debugger
+  fetch(`/habits/13/activities.json`)
+  .then((response) => response.json())
+  .then((data) => {
+debugger
+    console.log(data)
+    //obj = new Habit(data)
+    //debugger
+    //obj.habitsData()
+  })
+}
+
 
 class Habit {
   constructor(obj) {
@@ -78,7 +94,7 @@ class Habit {
    habitsData() {
      //debugger
        $(`#habit-data-${this.id}`).append(`Category: ${this.category}
-         Goal: ${this.goal}`)
+      ----  Goal: ${this.goal}`)
    }
 
 }
