@@ -47,6 +47,6 @@ class ActivitiesController < ApplicationController
 
   private
     def activity_params
-      params.require(:activity).permit(:action, :event_id, event_attributes: [:occurance])
+      params.require(:activity).permit(:action, :event_id, event_attributes: [:occurance,:comment])
     end
 end
