@@ -15,9 +15,9 @@ h3 = user1.habits.create(name: "Read 10 pages of Psychology book" ,category: "Ed
 h4 = user2.habits.create(name: "Stop Smoking" ,category: "Health" ,goal: "Cut down to 1 cigarette a week in a month" )
 
 #events
-e1 = Event.create(occurance: "2019-06-24")
-e2 = Event.create(occurance: "2019-06-23")
-e3 = Event.create(occurance: "2019-06-18")
+e1 = Event.create(occurance: "2019-06-24", comment: "I was able to focus today and do a full 10 minutes of meditation")
+e2 = Event.create(occurance: "2019-06-23", comment: "Focusing was incredibly hard today")
+e3 = Event.create(occurance: "2019-06-18", comment: "Too much noise outside but managed to get at least 5 minutes in")
 e4 = Event.create(occurance: "2019-06-17")
 e5 = Event.create(occurance: "2019-06-16")
 e6 = Event.create(occurance: "2019-06-07")
