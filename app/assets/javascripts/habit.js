@@ -2,7 +2,6 @@ $(document).on('turbolinks:load', function() {
   console.log('Hello World')
   $('#habits-data').one('click', function(event) {
     event.preventDefault()
-    //debugger
     getHabits(event.target.dataset.userId) //user specific habits
   })
   $('div#habit_form').submit(function (event) {
@@ -12,9 +11,8 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('a#each-habit-data').one('click', function(event) {
-    //debugger
     event.preventDefault()
-    getShowPage(event.target.dataset.habitId) //user specific habits
+    getShowPage(event.target.dataset.habitId)
   })
 
   $('#activities-data').one('click', function(event) {
@@ -44,7 +42,6 @@ function listOfHabits(habitsArray) {
   const habits = habitsArray.map(habit => {
    const obj = new Habit(habit)
    const html = obj.habitsHTML()
-   //debugger
    $('div#habits-list').append(html)
   })
 };
@@ -59,7 +56,6 @@ function getShowPage(id) {
 }
 
 function getActivitiesPage(id) {
-  //debugger
   fetch(`/habits/${id}/activities.json`)
   .then((response) => response.json())
   .then((dataArray) => {
@@ -70,7 +66,6 @@ function getActivitiesPage(id) {
 
 function listOfEvents(dataArray) {
   const events = dataArray.map(event => {
-    //debugger
    const eventObj = new Event(event)
    const eventHtml = eventObj.eventsHTML()
    $('div#list-activities').append(eventHtml)
@@ -91,11 +86,9 @@ class Habit {
     </li>`)
   }
    habitsData() {
-     //debugger
        $(`#habit-data-${this.id}`).append(`Category: ${this.category}
       ----  Goal: ${this.goal}`)
    }
-
 }
 
 class Event {
