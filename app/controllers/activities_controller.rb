@@ -1,8 +1,8 @@
 class ActivitiesController < ApplicationController
   before_action :logged_in?
   def index
-    @activities = Activity.all
-    #@activity = Activity.find(params[:id])
+    @activities = Activity.habit_activities(current_habit)
+    #@activity = Activity.find(params[:id])current_habit
     respond_to do |f|
           f.html {render :index}
     			f.json {render json: @activities}
