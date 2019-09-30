@@ -13,7 +13,7 @@
 
     <ul>
       <li><%=link_to "Homepage", user_path(current_user)%></li>
-      <li><%=link_to "My Habits", user_habits_path(current_user)%></li>
+      <li><%=link_to "Habits Quick View", user_habits_path(current_user)%></li>
       <li><%=link_to "Logout", {controller: 'sessions', action: 'destroy'}, :method => :delete%></li>
     </ul>
 
