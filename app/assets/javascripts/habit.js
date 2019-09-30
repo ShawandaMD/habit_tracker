@@ -69,7 +69,7 @@ function getActivitiesPage(id) {
   //debugger
   fetch(`/habits/13/activities.json`)
   .then((response) => response.json())
-  .then((data) => {
+  .then((dataArray) => {
 debugger
     console.log(data)
     //obj = new Habit(data)
@@ -77,6 +77,7 @@ debugger
     //obj.habitsData()
   })
 }
+
 
 
 class Habit {
@@ -97,4 +98,13 @@ class Habit {
       ----  Goal: ${this.goal}`)
    }
 
+}
+
+class Event{
+  constructor(obj) {
+    this.id = obj.id
+    this.occurance = obj.occurance
+    this.comment = obj.comment
+
+  }
 }
