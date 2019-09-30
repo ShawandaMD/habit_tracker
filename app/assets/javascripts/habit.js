@@ -5,19 +5,19 @@ $(document).on('turbolinks:load', function() {
     //debugger
     getHabits(event.target.dataset.userId) //user specific habits
   })
-  $('form').submit(function (event) {
+  $('div#habit_form').submit(function (event) {
   //alert( "Handler for .submit() called." );
   event.preventDefault();
   habitsForm(event.target)
   });
 
-  $('a#each-habit-data').on('click', function(event) {
+  $('a#each-habit-data').one('click', function(event) {
     //debugger
     event.preventDefault()
     getShowPage(event.target.dataset.habitId) //user specific habits
   })
 
-  $('#activities-data').on('click', function(event) {
+  $('#activities-data').one('click', function(event) {
     event.preventDefault()
     getActivitiesPage(event.target.dataset.habitId)
   })
@@ -30,13 +30,6 @@ function habitsForm(form) {
   jQuery.post(`/users/${id}/habits.json`, formData, function(response) {
   console.log(response), "JSON";
 })
-      //debugger
-//  fetch(`/users/${id}/habits.json`, {
-  //  method: 'POST', // or 'PUT'
-    //body: formData // data can be `string` or {object}!
-//  }).then(res => res.json())
-  //.then(habitObject => console.log(habitObject))//Why isnt this posting to the console???
-  //.catch(error => console.error('Error:', error));
 }
 
 function getHabits(id) {
@@ -105,16 +98,17 @@ class Habit {
 
 }
 
-class Event{
+class Event {
   constructor(obj) {
     this.id = obj.id
+    this.action = obj.action
     this.occurance = obj.event.occurance
     this.comment = obj.event.comment
     this.habitId = obj.habit.id
   }
   eventsHTML() {
     return (`<li>
-      Date: ${this.occurance} <br>
+      Date: ${this.occurance} --- ${this.action}<br>
       Comment: ${this.comment}
     </li><br>`)
   }
