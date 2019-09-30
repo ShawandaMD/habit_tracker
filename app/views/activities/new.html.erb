@@ -7,6 +7,9 @@ Date: <%= f.fields_for :event do |dates| %>
    <%= dates.date_field :occurance %>
  <% end %>
 Action: <%= f.select :action, action_list.each { |action| action}, include_blank: true %>
+Comment: <%= f.fields_for :event do |comment_field| %>
+   <%= comment_field.text_field :comment %>
+ <% end %>
 </div>
 <%= f.submit %>
 <%end%>
