@@ -4,10 +4,19 @@ $(document).on('turbolinks:load', function() {
     event.preventDefault()
     getHabits(event.target.dataset.userId) //user specific habits
   })
-  $('div#habit_form').submit(function (event) {
+  $('#js_habit_form').one('click', function (event) {
+    event.preventDefault()
+    $('#js_habit_form').append(`<form>
+      Name: <input type="text" name="habit[name]" id=habit_name><br>
+      Category: <input type="text" name="habit[category]" id=habit_category><br>
+      Goal: <input type="text" name="habit[goal]" id=habit_goal><br>
+      <input type="submit" value="Submit">
+      </form>`)
+  })
+  $('#js_habit_form').submit(function (event) {
   //alert( "Handler for .submit() called." );
   event.preventDefault();
-  habitsForm(event.target)
+  habitsForm(event.target) //this did not give me back info only the form
   });
 
   $('a#each-habit-data').one('click', function(event) {
@@ -26,7 +35,8 @@ function habitsForm(form) {
   const id = form.action.split('/')[4]
 
   jQuery.post(`/users/${id}/habits.json`, formData, function(response) {
-  console.log(response), "JSON";
+  console.log(response), "JSON" ;
+  window.location.replace(`http://localhost:3000/users/${id}/habits`)
 })
 }
 
@@ -89,6 +99,7 @@ class Habit {
        $(`#habit-data-${this.id}`).append(`Category: ${this.category}
       ----  Goal: ${this.goal}`)
    }
+
 }
 
 class Event {
